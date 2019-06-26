@@ -47,12 +47,7 @@ class TimeboxList extends React.Component {
     );
   };
 
-  updateTimeboxOnlyTitle = (
-    indexToUpdate,
-    timeboxToUpdate,
-    timeboxToUpdateId
-  ) => {
-    timeboxToUpdate.id = timeboxToUpdateId;
+  updateTimeboxOnlyTitle = (indexToUpdate, timeboxToUpdate) => {
     TimeboxesAPI.partiallyUpdateTimebox(timeboxToUpdate).then(updatedTimebox =>
       this.setState(prevState => {
         const timeboxes = prevState.timeboxes.map((timebox, index) =>
@@ -89,13 +84,10 @@ class TimeboxList extends React.Component {
               })
             }
             onUpdate={() =>
-              this.updateTimeboxOnlyTitle(
-                index,
-                {
-                  title: "Updatowałem ;)"
-                },
-                timebox.id
-              )
+              this.updateTimeboxOnlyTitle(index, {
+                id: timebox.id,
+                title: "Updatowałem ;)"
+              })
             }
           />
         ))}
